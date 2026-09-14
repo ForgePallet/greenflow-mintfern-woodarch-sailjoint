@@ -234,11 +234,11 @@ jobs:
       contents: read
       id-token: write
     needs:
-      - xebfvngzptv
-      - x2i4t6s6tsa
-      - xsts7sd6itu
       - xr5m7kil4bh
       - xojv4xy34s2
+      - x2i4t6s6tsa
+      - xsts7sd6itu
+      - xebfvngzptv
     outputs:
       x2acawptpry: ${{ steps.run.outputs.x2acawptpry }}
     steps:

@@ -312,13 +312,13 @@ jobs:
       contents: read
       id-token: write
     needs:
-      - xthbvsuzozy
-      - xsk5jqu623s
-      - xc6e7k4miri
-      - xn73oghpgtv
       - xy65mc7rrhz
       - x5vuy4jc5on
       - xhibmmyvnkj
+      - xsk5jqu623s
+      - xc6e7k4miri
+      - xn73oghpgtv
+      - xthbvsuzozy
     outputs:
       x4hl7m5crkj: ${{ steps.run.outputs.x4hl7m5crkj }}
     steps:

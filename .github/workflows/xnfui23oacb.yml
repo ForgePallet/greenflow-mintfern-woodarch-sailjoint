@@ -234,11 +234,11 @@ jobs:
       contents: read
       id-token: write
     needs:
-      - x6o5mrpg2h5
-      - xwqtloftopl
-      - xnispv7sbml
       - xxnojihxyea
       - xg66xvylk5e
+      - xwqtloftopl
+      - xnispv7sbml
+      - x6o5mrpg2h5
     outputs:
       xf26y3y5nzg: ${{ steps.run.outputs.xf26y3y5nzg }}
     steps:

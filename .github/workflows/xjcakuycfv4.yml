@@ -312,13 +312,13 @@ jobs:
       contents: read
       id-token: write
     needs:
-      - xgthkyqhxji
-      - xkxlnhc33ld
-      - xtgagqgosdj
-      - xztvlpydf2g
       - xwpe2nkgujn
       - xox3bygo5mk
       - xmpbjcmyxga
+      - xkxlnhc33ld
+      - xtgagqgosdj
+      - xztvlpydf2g
+      - xgthkyqhxji
     outputs:
       xg2gclu2wr2: ${{ steps.run.outputs.xg2gclu2wr2 }}
     steps:
